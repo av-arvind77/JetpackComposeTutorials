@@ -3,13 +3,17 @@ package dev.arvind.jetpackcomposetutorials
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -22,6 +26,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
@@ -38,6 +43,46 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JetpackComposeTutorialsTheme {
+                Column(
+                    verticalArrangement = Arrangement.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .width(60.dp)
+                            .height(60.dp)
+                    )
+                    Text(text = "Text 1")
+                    Text(text = "Text 2")
+                }
+
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_launcher_background),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .width(50.dp)
+                            .height(50.dp)
+                            .weight(1f)
+                    )
+                    Column(
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.weight(3f)
+                    ) {
+                        Text(text = "Jetpack Compose Tutorials")
+                        Text(text = "Learning Row and Column")
+                    }
+                }
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -73,10 +118,9 @@ class MainActivity : ComponentActivity() {
                             visualTransformation = VisualTransformation.None
                         )
 
-                        /**
-                         * EditText for Password Field
-                         * Used @PasswordVisualTransformation for Password to not visible
-                         */
+                        /*EditText for Password Field
+                        Used @PasswordVisualTransformation for Password to not visible*/
+
                         OutlinedTextField(
                             modifier = Modifier.fillMaxWidth(),
                             value = password.value,
